@@ -8,13 +8,14 @@
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
-            background-color: #f7f7f7;
+            background: url('subwayMap.png') no-repeat center center fixed;
+            background-size: cover;
         }
         .container {
             max-width: 600px;
             margin: 0 auto;
             padding: 20px;
-            background-color: #fff;
+            background-color: rgba(255, 255, 255, 0.9); /* Полупрозрачный белый фон для контента */
             border: 1px solid #ddd;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -68,6 +69,13 @@
         button:hover {
             background-color: #0056b3;
         }
+        details {
+            margin-bottom: 10px;
+        }
+        summary {
+            font-weight: bold;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -77,7 +85,7 @@
             <div class="form-group">
                 <label>Количество комнат:</label>
                 <div class="checkbox-group">
-                    <input type="checkbox" name="rooms" value="studio"> <label>Студия</label>
+                    <input type="checkbox" name="rooms" value="9"> <label>Студия</label>
                     <input type="checkbox" name="rooms" value="1"> <label>1</label>
                     <input type="checkbox" name="rooms" value="2"> <label>2</label>
                     <input type="checkbox" name="rooms" value="3"> <label>3</label>
@@ -87,55 +95,174 @@
             </div>
             <div class="form-group">
                 <label>Стоимость (в рублях):</label>
-                <input type="number" name="price_from" placeholder="Цена от"> -
-                <input type="number" name="price_to" placeholder="Цена до">
+                <input type="number" id="price_from" placeholder="Цена от"> -
+                <input type="number" id="price_to" placeholder="Цена до">
             </div>
             <div class="form-group">
                 <label>Площадь (в кв. м):</label>
-                <input type="number" name="area_from" placeholder="От"> -
-                <input type="number" name="area_to" placeholder="До">
+                <input type="number" id="area_from" placeholder="От"> -
+                <input type="number" id="area_to" placeholder="До">
             </div>
             <div class="form-group">
                 <label>
-                    <input type="checkbox" name="not_first_floor"> Не первый этаж
+                    <input type="checkbox" id="not_first_floor"> Не первый этаж
                 </label>
             </div>
             <div class="form-group">
                 <label>Станции метро:</label>
                 <div class="checkbox-group">
-                    <input type="checkbox" name="metro_stations" value="station1"> <label>Станция 1</label>
-                    <input type="checkbox" name="metro_stations" value="station2"> <label>Станция 2</label>
-                    <input type="checkbox" name="metro_stations" value="station3"> <label>Станция 3</label>
-                    <input type="checkbox" name="metro_stations" value="station4"> <label>Станция 4</label>
-                    <input type="checkbox" name="metro_stations" value="station5"> <label>Станция 5</label>
+                    <input type="checkbox" name="all_inside_ring" id="circle" value="true"> <label>Все станции внутри кольца</label>
                 </div>
+                <details>
+                    <summary>Сокольническая(красная)</summary>
+                    <div class="checkbox-group">
+                        <input type="checkbox" name="metro_stations" value="137"> <label>Бульвар Рокоссовского</label>
+<input type="checkbox" name="metro_stations" value="146"> <label>Черкизовская</label>
+<input type="checkbox" name="metro_stations" value="100"> <label>Преображенская площадь</label>
+<input type="checkbox" name="metro_stations" value="117"> <label>Сокольники</label>
+<input type="checkbox" name="metro_stations" value="53"> <label>Красносельская</label>
+<input type="checkbox" name="metro_stations" value="50"> <label>Комсомольская</label>
+<input type="checkbox" name="metro_stations" value="54"> <label>Красные ворота</label>
+<input type="checkbox" name="metro_stations" value="149"> <label>Чистые пруды</label>
+<input type="checkbox" name="metro_stations" value="64"> <label>Лубянка</label>
+<input type="checkbox" name="metro_stations" value="84"> <label>Охотный ряд</label>
+<input type="checkbox" name="metro_stations" value="18"> <label>Библиотека им. Ленина</label>
+<input type="checkbox" name="metro_stations" value="56"> <label>Кропоткинская</label>
+<input type="checkbox" name="metro_stations" value="86"> <label>Парк культуры</label>
+<input type="checkbox" name="metro_stations" value="143"> <label>Фрунзенская</label>
+<input type="checkbox" name="metro_stations" value="118"> <label>Спортивная</label>
+<input type="checkbox" name="metro_stations" value="33"> <label>Воробьёвы горы</label>
+<input type="checkbox" name="metro_stations" value="140"> <label>Университет</label>
+<input type="checkbox" name="metro_stations" value="102"> <label>Проспект Вернадского</label>
+<input type="checkbox" name="metro_stations" value="156"> <label>Юго-Западная</label>
+                    </div>
+                </details>
+                <details>
+                    <summary>Замоскворецкая(зеленая)</summary>
+                    <div class="checkbox-group">
+                        <input type="checkbox" name="metro_stations" value="52"> <label>Красногвардейская</label>
+<input type="checkbox" name="metro_stations" value="39"> <label>Домодедовская</label>
+<input type="checkbox" name="metro_stations" value="82"> <label>Орехово</label>
+<input type="checkbox" name="metro_stations" value="144"> <label>Царицыно</label>
+<input type="checkbox" name="metro_stations" value="43"> <label>Кантемировская</label>
+<input type="checkbox" name="metro_stations" value="45"> <label>Каширская</label>
+<input type="checkbox" name="metro_stations" value="49"> <label>Коломенская</label>
+<input type="checkbox" name="metro_stations" value="2"> <label>Автозаводская</label>
+<input type="checkbox" name="metro_stations" value="85"> <label>Павелецкая</label>
+<input type="checkbox" name="metro_stations" value="77"> <label>Новокузнецкая</label>
+<input type="checkbox" name="metro_stations" value="125"> <label>Театральная</label>
+<input type="checkbox" name="metro_stations" value="124"> <label>Тверская</label>
+<input type="checkbox" name="metro_stations" value="68"> <label>Маяковская</label>
+<input type="checkbox" name="metro_stations" value="15"> <label>Белорусская</label>
+<input type="checkbox" name="metro_stations" value="36"> <label>Динамо</label>
+<input type="checkbox" name="metro_stations" value="9"> <label>Аэропорт</label>
+<input type="checkbox" name="metro_stations" value="116"> <label>Сокол</label>
+<input type="checkbox" name="metro_stations" value="30"> <label>Войковская</label>
+<input type="checkbox" name="metro_stations" value="29"> <label>Водный стадион</label>
+<input type="checkbox" name="metro_stations" value="106"> <label>Речной вокзал</label>
+                    </div>
+                </details>
+                <details>
+                    <summary>Кольцевая</summary>
+                    <div class="checkbox-group">
+                        <input type="checkbox" name="metro_stations" value="15"> <label>Белорусская</label>
+                        <input type="checkbox" name="metro_stations" value="78"> <label>Новослободская</label>
+                        <input type="checkbox" name="metro_stations" value="103"> <label>Проспект Мира</label>
+                        <input type="checkbox" name="metro_stations" value="50"> <label>Комсомольская</label>
+                        <input type="checkbox" name="metro_stations" value="61"> <label>Курская</label>
+                        <input type="checkbox" name="metro_stations" value="123"> <label>Таганская</label>
+                        <input type="checkbox" name="metro_stations" value="85"> <label>Павелецкая</label>
+                        <input type="checkbox" name="metro_stations" value="38"> <label>Добрынинская</label>
+                        <input type="checkbox" name="metro_stations" value="80"> <label>Октябрьская</label>
+                        <input type="checkbox" name="metro_stations" value="86"> <label>Парк культуры</label>
+                        <input type="checkbox" name="metro_stations" value="46"> <label>Киевская</label>
+                        <input type="checkbox" name="metro_stations" value="159"> <label>Краснопресненская</label>
+
+                        <!-- Добавьте больше станций по необходимости -->
+                    </div>
+                </details>
+                <details>
+                    <summary>Калужско-Рижская(Оранжевая)</summary>
+                    <div class="checkbox-group">
+                        <input type="checkbox" name="metro_stations" value="69"> <label>Медведково</label>
+                        <input type="checkbox" name="metro_stations" value="10"> <label>Бабушкинская</label>
+                        <input type="checkbox" name="metro_stations" value="111"> <label>Свиблово</label>
+                        <input type="checkbox" name="metro_stations" value="21"> <label>Ботанический сад</label>
+                        <input type="checkbox" name="metro_stations" value="27"> <label>ВДНХ</label>
+                        <input type="checkbox" name="metro_stations" value="5"> <label>Алексеевская</label>
+                        <input type="checkbox" name="metro_stations" value="107"> <label>Рижская</label>
+                        <input type="checkbox" name="metro_stations" value="103"> <label>Проспект Мира</label>
+                        <input type="checkbox" name="metro_stations" value="121"> <label>Сухаревская</label>
+                        <input type="checkbox" name="metro_stations" value="132"> <label>Тургеневская</label>
+                        <input type="checkbox" name="metro_stations" value="47"> <label>Китай-город</label>
+                        <input type="checkbox" name="metro_stations" value="129"> <label>Третьяковская</label>
+                        <input type="checkbox" name="metro_stations" value="80"> <label>Октябрьская</label>
+                        <input type="checkbox" name="metro_stations" value="151"> <label>Шаболовская</label>
+                        <input type="checkbox" name="metro_stations" value="63"> <label>Ленинский проспект</label>
+                        <input type="checkbox" name="metro_stations" value="3"> <label>Академическая</label>
+                        <input type="checkbox" name="metro_stations" value="104"> <label>Профсоюзная</label>
+                        <input type="checkbox" name="metro_stations" value="79"> <label>Новые Черемушки</label>
+                        <input type="checkbox" name="metro_stations" value="42"> <label>Калужская</label>
+                        <input type="checkbox" name="metro_stations" value="16"> <label>Беляево</label>
+                        <input type="checkbox" name="metro_stations" value="51"> <label>Коньково</label>
+                        <input type="checkbox" name="metro_stations" value="127"> <label>Теплый Стан</label>
+                        <input type="checkbox" name="metro_stations" value="158"> <label>Ясенево</label>
+                        <input type="checkbox" name="metro_stations" value="19"> <label>Новоясеневская</label>
+                        <!-- Добавьте больше станций по необходимости -->
+                    </div>
+                </details>
+                <!-- Добавьте больше линий метро по необходимости -->
             </div>
             <div class="form-group">
-                <button type="submit">Искать</button>
+                <button type="button" id="search">Искать</button>
             </div>
         </form>
     </div>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script>
         let tg = window.Telegram.WebApp;
-                document.getElementById('searchForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // Остановить стандартное поведение формы
-            const formData = new FormData(event.target);
+        let search = document.getElementById('search');
+        tg.expand();
+        let circle = document.getElementById('circle');
+        let notFfloor = document.getElementById('not_first_floor');
+        let price_from = document.getElementById(name='price_from');
+        let price_to = document.getElementById(name='price_to');
+        let area_from = document.getElementById(name='area_from');
+        let area_to = document.getElementById(name='area_to');
+        let roomsCountList = [];
+        let IDstations = [];
+        
+        search.addEventListener("click" , function() {
+          //  alert("cds");
 
-            // Преобразование FormData в объект
-            const data = {};
-            formData.forEach((value, key) => {
-                if (!data[key]) {
-                    data[key] = value;
-                } else {
-                    if (!Array.isArray(data[key])) {
-                        data[key] = [data[key]];
-                    }
-                    data[key].push(value);
-                }
-            });
+        let checkedMetroStations = document.querySelectorAll('input[type="checkbox"][name="metro_stations"]:checked');
+        checkedMetroStations.forEach(function(checkbox) {
+            IDstations.push(checkbox.value);
+        });
+        let roomsCount = document.querySelectorAll('input[type="checkbox"][name="rooms"]:checked');
+        roomsCount.forEach(function(checkbox) {
+            roomsCountList.push(checkbox.value);
+        });
+        let __circle = circle.checked;
+        let __is_First_floor = !notFfloor.checked;
+        alert(roomsCountList);
+
+            //ТУТ ДОЛЖНА БЫТЬ ОТПРАВКА ДАННГЫХ ОБРАТНО В БОТ
+            let data = {
+                inside_circle_stations: circle.checked,
+                is_first_floor: notFfloor.checked,
+                price_from: price_from.value,
+                price_to: price_to.value,
+                area_from: area_from.value,
+                area_to: area_to.value,
+                room: roomsCountList,
+                geo: IDstations
+        }
+        alert(IDstations);
         tg.sendData(JSON.stringify(data));
         tg.close();
+        })
+ 
     </script>
 </body>
 </html>
