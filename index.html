@@ -1,122 +1,143 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Поиск аренды квартиры</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            background: url('subwayMap.png') no-repeat center center fixed;
-            background-size: cover;
-        }
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: rgba(255, 255, 255, 0.9); /* Полупрозрачный белый фон для контента */
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            text-align: center;
-            color: #333;
-        }
-        .form-group {
-            margin-bottom: 20px;
-        }
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-            color: #555;
-        }
-        input[type="number"],
-        input[type="checkbox"] {
-            margin-right: 10px;
-        }
-        input[type="number"] {
-            width: calc(50% - 12px);
-            padding: 8px;
-            margin-right: 4px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        .checkbox-group {
-            display: flex;
-            flex-wrap: wrap;
-        }
-        .checkbox-group input {
-            margin-right: 5px;
-        }
-        .checkbox-group label {
-            margin-right: 15px;
-            font-weight: normal;
-        }
-        button {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-        details {
-            margin-bottom: 10px;
-        }
-        summary {
-            font-weight: bold;
-            cursor: pointer;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Поиск аренды квартиры</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        background: url('subwayMap.png') no-repeat center center fixed;
+        background-size: cover;
+    }
+    .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.9); /* Полупрозрачный белый фон для контента */
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+        text-align: center;
+        color: #333;
+    }
+    .form-group {
+        margin-bottom: 20px;
+    }
+    label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+        color: #555;
+    }
+    input[type="number"],
+    input[type="checkbox"] {
+        margin-right: 10px;
+    }
+    input[type="number"] {
+        width: calc(50% - 12px);
+        padding: 8px;
+        margin-right: 4px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+    .checkbox-group {
+        display: flex;
+        flex-wrap: wrap;
+        display: block;
+    }
+    .checkbox-group2 {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .checkbox-group input[type="checkbox"],
+.checkbox-group label {
+    display: block;
+}
+    
+    .checkbox-group label {
+        margin-right: 15px;
+        font-weight: normal;
+    }
+    button {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+    button:hover {
+        background-color: #0056b3;
+    }
+    details {
+        margin-bottom: 10px;
+    }
+    summary {
+        font-weight: bold;
+        cursor: pointer;
+    }
+    
+</style>
 </head>
 <body>
-    <div class="container">
-        <h1>Поиск аренды квартиры</h1>
-        <form id="searchForm">
-            <div class="form-group">
-                <label>Количество комнат:</label>
+<div class="container">
+    <h1>Поиск аренды квартиры</h1>
+    <form id="searchForm">
+        <div class="form-group">
+            <label>Количество комнат:</label>
+            <div class="checkbox-group2">
+                <input type="checkbox" name="rooms" value="9"> <label>Студия</label>
+                <input type="checkbox" name="rooms" value="1"> <label>1</label>
+                <input type="checkbox" name="rooms" value="2"> <label>2</label>
+                <input type="checkbox" name="rooms" value="3"> <label>3</label>
+                <input type="checkbox" name="rooms" value="4"> <label>4</label>
+                <input type="checkbox" name="rooms" value="5"> <label>5</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Стоимость (в рублях):</label>
+            <input type="number" id="price_from" placeholder="Цена от"> -
+            <input type="number" id="price_to" placeholder="Цена до">
+        </div>
+        <div class="form-group">
+            <label>Площадь (в кв. м):</label>
+            <input type="number" id="area_from" placeholder="От"> -
+            <input type="number" id="area_to" placeholder="До">
+        </div>
+        <div class="form-group">
+            <label>
+                <input type="checkbox" id="not_first_floor"> Не первый этаж
+            </label>
+        </div>
+        <label>Удобства:</label>
+        <div class="checkbox-group">
+            <input type="checkbox" name="amenities" id="conditioner" value="air_conditioner"> <label>Кондиционер</label>
+            <input type="checkbox" name="amenities" id="dish_washer" value="dishwasher"> <label>Посудомоечная машина</label>
+            <input type="checkbox" name="amenities" id="has_fridge" value="fridge"> <label>Холодильник</label>
+            <input type="checkbox" name="amenities" id="has_washer" value="washing_machine"> <label>Стиральная машина</label>
+        </div>
+        <div class="form-group">
+            <label>Максимальное время пешком до метро (в минутах):</label>
+            <input type="number" id="max_walk_time" placeholder="Максимум минут">
+        </div>
+        <div class="form-group">
+    </div>
+        <div class="form-group">
+            <label>Станции метро:</label>
+            <div class="checkbox-group">
+                <input type="checkbox" name="all_inside_ring" id="circle" value="true"> <label>Все станции внутри кольца</label>
+            </div>
+            <details>
+                <summary>Сокольническая(красная)</summary>
                 <div class="checkbox-group">
-                    <input type="checkbox" name="rooms" value="9"> <label>Студия</label>
-                    <input type="checkbox" name="rooms" value="1"> <label>1</label>
-                    <input type="checkbox" name="rooms" value="2"> <label>2</label>
-                    <input type="checkbox" name="rooms" value="3"> <label>3</label>
-                    <input type="checkbox" name="rooms" value="4"> <label>4</label>
-                    <input type="checkbox" name="rooms" value="5"> <label>5</label>
-                </div>
-            </div>
-            <div class="form-group">
-                <label>Стоимость (в рублях):</label>
-                <input type="number" id="price_from" placeholder="Цена от"> -
-                <input type="number" id="price_to" placeholder="Цена до">
-            </div>
-            <div class="form-group">
-                <label>Площадь (в кв. м):</label>
-                <input type="number" id="area_from" placeholder="От"> -
-                <input type="number" id="area_to" placeholder="До">
-            </div>
-            <div class="form-group">
-                <label>
-                    <input type="checkbox" id="not_first_floor"> Не первый этаж
-                </label>
-            </div>
-            <div class="form-group">
-                <label>Станции метро:</label>
-                <div class="checkbox-group">
-                    <input type="checkbox" name="all_inside_ring" id="circle" value="true"> <label>Все станции внутри кольца</label>
-                </div>
-                <details>
-                    <summary>Сокольническая(красная)</summary>
-                    <div class="checkbox-group">
-                        <input type="checkbox" name="metro_stations" value="137"> <label>Бульвар Рокоссовского</label>
+                    <input type="checkbox" name="metro_stations" value="137"> <label>Бульвар Рокоссовского</label>
 <input type="checkbox" name="metro_stations" value="146"> <label>Черкизовская</label>
 <input type="checkbox" name="metro_stations" value="100"> <label>Преображенская площадь</label>
 <input type="checkbox" name="metro_stations" value="117"> <label>Сокольники</label>
@@ -135,12 +156,12 @@
 <input type="checkbox" name="metro_stations" value="140"> <label>Университет</label>
 <input type="checkbox" name="metro_stations" value="102"> <label>Проспект Вернадского</label>
 <input type="checkbox" name="metro_stations" value="156"> <label>Юго-Западная</label>
-                    </div>
-                </details>
-                <details>
-                    <summary>Замоскворецкая(зеленая)</summary>
-                    <div class="checkbox-group">
-                        <input type="checkbox" name="metro_stations" value="52"> <label>Красногвардейская</label>
+                </div>
+            </details>
+            <details>
+                <summary>Замоскворецкая(зеленая)</summary>
+                <div class="checkbox-group">
+                    <input type="checkbox" name="metro_stations" value="52"> <label>Красногвардейская</label>
 <input type="checkbox" name="metro_stations" value="39"> <label>Домодедовская</label>
 <input type="checkbox" name="metro_stations" value="82"> <label>Орехово</label>
 <input type="checkbox" name="metro_stations" value="144"> <label>Царицыно</label>
@@ -160,109 +181,135 @@
 <input type="checkbox" name="metro_stations" value="30"> <label>Войковская</label>
 <input type="checkbox" name="metro_stations" value="29"> <label>Водный стадион</label>
 <input type="checkbox" name="metro_stations" value="106"> <label>Речной вокзал</label>
-                    </div>
-                </details>
-                <details>
-                    <summary>Кольцевая</summary>
-                    <div class="checkbox-group">
-                        <input type="checkbox" name="metro_stations" value="15"> <label>Белорусская</label>
-                        <input type="checkbox" name="metro_stations" value="78"> <label>Новослободская</label>
-                        <input type="checkbox" name="metro_stations" value="103"> <label>Проспект Мира</label>
-                        <input type="checkbox" name="metro_stations" value="50"> <label>Комсомольская</label>
-                        <input type="checkbox" name="metro_stations" value="61"> <label>Курская</label>
-                        <input type="checkbox" name="metro_stations" value="123"> <label>Таганская</label>
-                        <input type="checkbox" name="metro_stations" value="85"> <label>Павелецкая</label>
-                        <input type="checkbox" name="metro_stations" value="38"> <label>Добрынинская</label>
-                        <input type="checkbox" name="metro_stations" value="80"> <label>Октябрьская</label>
-                        <input type="checkbox" name="metro_stations" value="86"> <label>Парк культуры</label>
-                        <input type="checkbox" name="metro_stations" value="46"> <label>Киевская</label>
-                        <input type="checkbox" name="metro_stations" value="159"> <label>Краснопресненская</label>
+                </div>
+            </details>
+            <details>
+                <summary>Кольцевая</summary>
+                <div class="checkbox-group">
+                    <input type="checkbox" name="metro_stations" value="15"> <label>Белорусская</label>
+                    <input type="checkbox" name="metro_stations" value="78"> <label>Новослободская</label>
+                    <input type="checkbox" name="metro_stations" value="103"> <label>Проспект Мира</label>
+                    <input type="checkbox" name="metro_stations" value="50"> <label>Комсомольская</label>
+                    <input type="checkbox" name="metro_stations" value="61"> <label>Курская</label>
+                    <input type="checkbox" name="metro_stations" value="123"> <label>Таганская</label>
+                    <input type="checkbox" name="metro_stations" value="85"> <label>Павелецкая</label>
+                    <input type="checkbox" name="metro_stations" value="38"> <label>Добрынинская</label>
+                    <input type="checkbox" name="metro_stations" value="80"> <label>Октябрьская</label>
+                    <input type="checkbox" name="metro_stations" value="86"> <label>Парк культуры</label>
+                    <input type="checkbox" name="metro_stations" value="46"> <label>Киевская</label>
+                    <input type="checkbox" name="metro_stations" value="159"> <label>Краснопресненская</label>
 
-                        <!-- Добавьте больше станций по необходимости -->
-                    </div>
-                </details>
-                <details>
-                    <summary>Калужско-Рижская(Оранжевая)</summary>
-                    <div class="checkbox-group">
-                        <input type="checkbox" name="metro_stations" value="69"> <label>Медведково</label>
-                        <input type="checkbox" name="metro_stations" value="10"> <label>Бабушкинская</label>
-                        <input type="checkbox" name="metro_stations" value="111"> <label>Свиблово</label>
-                        <input type="checkbox" name="metro_stations" value="21"> <label>Ботанический сад</label>
-                        <input type="checkbox" name="metro_stations" value="27"> <label>ВДНХ</label>
-                        <input type="checkbox" name="metro_stations" value="5"> <label>Алексеевская</label>
-                        <input type="checkbox" name="metro_stations" value="107"> <label>Рижская</label>
-                        <input type="checkbox" name="metro_stations" value="103"> <label>Проспект Мира</label>
-                        <input type="checkbox" name="metro_stations" value="121"> <label>Сухаревская</label>
-                        <input type="checkbox" name="metro_stations" value="132"> <label>Тургеневская</label>
-                        <input type="checkbox" name="metro_stations" value="47"> <label>Китай-город</label>
-                        <input type="checkbox" name="metro_stations" value="129"> <label>Третьяковская</label>
-                        <input type="checkbox" name="metro_stations" value="80"> <label>Октябрьская</label>
-                        <input type="checkbox" name="metro_stations" value="151"> <label>Шаболовская</label>
-                        <input type="checkbox" name="metro_stations" value="63"> <label>Ленинский проспект</label>
-                        <input type="checkbox" name="metro_stations" value="3"> <label>Академическая</label>
-                        <input type="checkbox" name="metro_stations" value="104"> <label>Профсоюзная</label>
-                        <input type="checkbox" name="metro_stations" value="79"> <label>Новые Черемушки</label>
-                        <input type="checkbox" name="metro_stations" value="42"> <label>Калужская</label>
-                        <input type="checkbox" name="metro_stations" value="16"> <label>Беляево</label>
-                        <input type="checkbox" name="metro_stations" value="51"> <label>Коньково</label>
-                        <input type="checkbox" name="metro_stations" value="127"> <label>Теплый Стан</label>
-                        <input type="checkbox" name="metro_stations" value="158"> <label>Ясенево</label>
-                        <input type="checkbox" name="metro_stations" value="19"> <label>Новоясеневская</label>
-                        <!-- Добавьте больше станций по необходимости -->
-                    </div>
-                </details>
-                <!-- Добавьте больше линий метро по необходимости -->
-            </div>
-            <div class="form-group">
-                <button type="button" id="search">Искать</button>
-            </div>
-        </form>
-    </div>
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <script>
-        let tg = window.Telegram.WebApp;
-        let search = document.getElementById('search');
-        tg.expand();
-        let circle = document.getElementById('circle');
-        let notFfloor = document.getElementById('not_first_floor');
-        let price_from = document.getElementById(name='price_from');
-        let price_to = document.getElementById(name='price_to');
-        let area_from = document.getElementById(name='area_from');
-        let area_to = document.getElementById(name='area_to');
-        let roomsCountList = [];
-        let IDstations = [];
-        
-        search.addEventListener("click" , function() {
-          //  alert("cds");
+                    <!-- Добавьте больше станций по необходимости -->
+                </div>
+            </details>
+            <details>
+                <summary>Калужско-Рижская(Оранжевая)</summary>
+                <div class="checkbox-group">
+                    <input type="checkbox" name="metro_stations" value="69"> <label>Медведково</label>
+                    <input type="checkbox" name="metro_stations" value="10"> <label>Бабушкинская</label>
+                    <input type="checkbox" name="metro_stations" value="111"> <label>Свиблово</label>
+                    <input type="checkbox" name="metro_stations" value="21"> <label>Ботанический сад</label>
+                    <input type="checkbox" name="metro_stations" value="27"> <label>ВДНХ</label>
+                    <input type="checkbox" name="metro_stations" value="5"> <label>Алексеевская</label>
+                    <input type="checkbox" name="metro_stations" value="107"> <label>Рижская</label>
+                    <input type="checkbox" name="metro_stations" value="103"> <label>Проспект Мира</label>
+                    <input type="checkbox" name="metro_stations" value="121"> <label>Сухаревская</label>
+                    <input type="checkbox" name="metro_stations" value="132"> <label>Тургеневская</label>
+                    <input type="checkbox" name="metro_stations" value="47"> <label>Китай-город</label>
+                    <input type="checkbox" name="metro_stations" value="129"> <label>Третьяковская</label>
+                    <input type="checkbox" name="metro_stations" value="80"> <label>Октябрьская</label>
+                    <input type="checkbox" name="metro_stations" value="151"> <label>Шаболовская</label>
+                    <input type="checkbox" name="metro_stations" value="63"> <label>Ленинский проспект</label>
+                    <input type="checkbox" name="metro_stations" value="3"> <label>Академическая</label>
+                    <input type="checkbox" name="metro_stations" value="104"> <label>Профсоюзная</label>
+                    <input type="checkbox" name="metro_stations" value="79"> <label>Новые Черемушки</label>
+                    <input type="checkbox" name="metro_stations" value="42"> <label>Калужская</label>
+                    <input type="checkbox" name="metro_stations" value="16"> <label>Беляево</label>
+                    <input type="checkbox" name="metro_stations" value="51"> <label>Коньково</label>
+                    <input type="checkbox" name="metro_stations" value="127"> <label>Теплый Стан</label>
+                    <input type="checkbox" name="metro_stations" value="158"> <label>Ясенево</label>
+                    <input type="checkbox" name="metro_stations" value="19"> <label>Новоясеневская</label>
+                    <!-- Добавьте больше станций по необходимости -->
+                </div>
+            </details>
+            <!-- Добавьте больше линий метро по необходимости -->
+        </div>
+        <div>  </div>
+        <div class="form-group">
+            <div id="error"></div>  </div>
+            <button type="button" id="search">Искать</button>
+        </div>
+    </form>
+</div>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<script>
+    let tg = window.Telegram.WebApp;
+    tg.expand();
+    document.getElementById("price_from").value=0;
+    document.getElementById("price_to").value=50000;
+    document.getElementById("area_from").value=0;
+    document.getElementById("area_to").value=300;
+    document.getElementById("max_walk_time").value=15;
+    search.addEventListener("click" , function() {
+        document.getElementById("error").innerText = '';
+    let search = document.getElementById('search');
+    let circle = document.getElementById('circle');
+    let notFfloor = document.getElementById('not_first_floor');
+    let conditioner = document.getElementById('conditioner');
+    let has_fridge = document.getElementById('has_fridge');
+    let has_washer = document.getElementById('has_washer');
+    let dish_washer = document.getElementById('dish_washer');
+    let price_from = document.getElementById(name='price_from');
+    let price_to = document.getElementById(name='price_to');
+    let area_from = document.getElementById(name='area_from');
+    let area_to = document.getElementById(name='area_to');
+    let max_walk_time = document.getElementById(id= "max_walk_time");
+    let roomsCountList = [];
+    let IDstations = [];
+    alert(isNaN(parseInt(price_from.value)));
+    if ((isNaN(parseInt(price_from.value)))||(isNaN(parseInt(price_to.value)))||(isNaN(parseInt(area_from.value)))||(isNaN(parseInt(area_to.value)))||(isNaN(parseInt(max_walk_time.value)))) {
+    document.getElementById("error").innerText = "Ошибка в одной из форм: введите число, а не текст";
+    document.getElementById("error").style.color = "red";
+    return;
+    }
+    let checkedMetroStations = document.querySelectorAll('input[type="checkbox"][name="metro_stations"]:checked');
+    checkedMetroStations.forEach(function(checkbox) {
+        IDstations.push(checkbox.value);
+    });
+    let roomsCount = document.querySelectorAll('input[type="checkbox"][name="rooms"]:checked');
+    roomsCount.forEach(function(checkbox) {
+        roomsCountList.push(checkbox.value);
+    });
+    let comfortik = document.querySelectorAll('input[type="checkbox"][name="rooms"]:checked');
+    comfortik.forEach(function(checkbox) {
+        __comfortik.push(checkbox.value);
+    });
+    let __conditioner = conditioner.checked;
+    let __has_fridge = has_fridge.checked;
+    let __has_washer = has_washer.checked;
+    let __dish_washer = dish_washer.checked;
+    let __circle = circle.checked;
+    let __is_First_floor = !notFfloor.checked;
+        let data = {
+            "conditioner": __conditioner,
+            "has_fridge": __has_fridge,
+            "has_washer": __has_washer,
+            "dish_washer": __dish_washer,
+            "inside_circle_stations": circle.checked,
+            "is_first_floor": notFfloor.checked,
+            "price_from": price_from.value,
+            "price_to": price_to.value,
+            "area_from": area_from.value,
+            "area_to": area_to.value,
+            "room": roomsCountList,
+            "geo": IDstations
+    }
+    alert(price_from.value)
+    tg.sendData(JSON.stringify(data));
+    tg.close();
 
-        let checkedMetroStations = document.querySelectorAll('input[type="checkbox"][name="metro_stations"]:checked');
-        checkedMetroStations.forEach(function(checkbox) {
-            IDstations.push(checkbox.value);
-        });
-        let roomsCount = document.querySelectorAll('input[type="checkbox"][name="rooms"]:checked');
-        roomsCount.forEach(function(checkbox) {
-            roomsCountList.push(checkbox.value);
-        });
-        let __circle = circle.checked;
-        let __is_First_floor = !notFfloor.checked;
-        alert(roomsCountList);
+    })
 
-            //ТУТ ДОЛЖНА БЫТЬ ОТПРАВКА ДАННГЫХ ОБРАТНО В БОТ
-            let data = {
-                inside_circle_stations: circle.checked,
-                is_first_floor: notFfloor.checked,
-                price_from: price_from.value,
-                price_to: price_to.value,
-                area_from: area_from.value,
-                area_to: area_to.value,
-                room: roomsCountList,
-                geo: IDstations
-        }
-        alert(IDstations);
-        tg.sendData(JSON.stringify(data));
-        tg.close();
-        })
- 
-    </script>
+</script>
 </body>
 </html>
