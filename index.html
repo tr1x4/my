@@ -274,15 +274,11 @@
     }
     let checkedMetroStations = document.querySelectorAll('input[type="checkbox"][name="metro_stations"]:checked');
     checkedMetroStations.forEach(function(checkbox) {
-        IDstations.push(checkbox.value);
+        IDstations.push(parseInt(checkbox.value));
     });
     let roomsCount = document.querySelectorAll('input[type="checkbox"][name="rooms"]:checked');
     roomsCount.forEach(function(checkbox) {
-        roomsCountList.push(checkbox.value);
-    });
-    let comfortik = document.querySelectorAll('input[type="checkbox"][name="rooms"]:checked');
-    comfortik.forEach(function(checkbox) {
-        __comfortik.push(checkbox.value);
+        roomsCountList.push(parseInt(checkbox.value));
     });
     let __conditioner = conditioner.checked;
     let __has_fridge = has_fridge.checked;
@@ -297,12 +293,13 @@
             "dish_washer": __dish_washer,
             "inside_circle_stations": circle.checked,
             "is_first_floor": notFfloor.checked,
-            "price_from": price_from.value,
-            "price_to": price_to.value,
-            "area_from": area_from.value,
-            "area_to": area_to.value,
+            "price_from": parseInt(price_from.value),
+            "price_to": parseInt(price_to.value),
+            "area_from": parseInt(area_from.value),
+            "area_to": parseInt(area_to.value),
             "room": roomsCountList,
-            "geo": IDstations
+            "geo": IDstations,
+            "foot_min": parseInt(max_walk_time.value)
     }
     alert(price_from.value)
     tg.sendData(JSON.stringify(data));
