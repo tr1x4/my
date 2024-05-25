@@ -94,8 +94,8 @@
             <label>Количество комнат:</label>
             <div class="checkbox-group2">
                 <input type="checkbox" name="rooms" value="9"> <label>Студия</label>
-                <input type="checkbox" name="rooms" value="1"> <label>1</label>
-                <input type="checkbox" name="rooms" value="2"> <label>2</label>
+                <input type="checkbox" name="rooms" value="1" checked> <label>1</label>
+                <input type="checkbox" name="rooms" value="2" checked> <label>2</label>
                 <input type="checkbox" name="rooms" value="3"> <label>3</label>
                 <input type="checkbox" name="rooms" value="4"> <label>4</label>
                 <input type="checkbox" name="rooms" value="5"> <label>5</label>
@@ -120,8 +120,8 @@
         <div class="checkbox-group">
             <input type="checkbox" name="amenities" id="conditioner" value="air_conditioner"> <label>Кондиционер</label>
             <input type="checkbox" name="amenities" id="dish_washer" value="dishwasher"> <label>Посудомоечная машина</label>
-            <input type="checkbox" name="amenities" id="has_fridge" value="fridge"> <label>Холодильник</label>
-            <input type="checkbox" name="amenities" id="has_washer" value="washing_machine"> <label>Стиральная машина</label>
+            <input type="checkbox" name="amenities" id="has_fridge" value="fridge" checked> <label>Холодильник</label>
+            <input type="checkbox" name="amenities" id="has_washer" value="washing_machine" checked> <label>Стиральная машина</label>
         </div>
         <div class="form-group">
             <label>Максимальное время пешком до метро (в минутах):</label>
@@ -266,7 +266,6 @@
     let max_walk_time = document.getElementById(id= "max_walk_time");
     let roomsCountList = [];
     let IDstations = [];
-    alert(isNaN(parseInt(price_from.value)));
     if ((isNaN(parseInt(price_from.value)))||(isNaN(parseInt(price_to.value)))||(isNaN(parseInt(area_from.value)))||(isNaN(parseInt(area_to.value)))||(isNaN(parseInt(max_walk_time.value)))) {
     document.getElementById("error").innerText = "Ошибка в одной из форм: введите число, а не текст";
     document.getElementById("error").style.color = "red";
@@ -301,7 +300,6 @@
             "geo": IDstations,
             "foot_min": parseInt(max_walk_time.value)
     }
-    alert(price_from.value)
     tg.sendData(JSON.stringify(data));
     tg.close();
 
